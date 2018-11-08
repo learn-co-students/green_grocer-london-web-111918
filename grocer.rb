@@ -1,17 +1,17 @@
 require 'pry'
 
 def consolidate_cart(cart)
-  cart.each_with_object({}) do |item_hash, result|
-		item_hash.each do |food, attributes|
-			if result[food]
-				attributes[:count] += 1
+  new_cart = {}
+  cart.each do |item_hash|
+		item_hash.each do |name, data_hash|
+			if new_cart[name].nil?
+				new_cart[name] = data_hash.merge({:count => 1})
 			else
-				attributes[:count] = 1
-				result[food] = attributes
+				new_cart[name][:count] += 1
 			end
-      
 		end
 	end
+	return new_cart
 end
 
 def apply_coupons(cart, coupons)
