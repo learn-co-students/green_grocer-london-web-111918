@@ -16,10 +16,9 @@ def apply_coupons(cart, coupons)
   # code here
   cart.each_with_object({}) do |(item, info), applied|
     coupon = coupons.find {|coupon| coupon[:item] == item}
+    applied[item] = info
     w_coupon = "#{item} W/COUPON"
-    if coupon == nil
-      applied[item] = info
-    else
+    if coupon != nil
       applied[item] = info
       applied[w_coupon] = {price: coupon[:cost], clearance: info[:clearance], count: 0}
       until applied[item][:count] < coupon[:num]
