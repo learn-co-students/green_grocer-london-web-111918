@@ -1,13 +1,3 @@
-require "pry"
-
-cart = [
-  {"AVOCADO" => {:price => 3.0, :clearance => true }},
-  {"AVOCADO" => {:price => 3.0, :clearance => true }},
-  {"KALE"    => {:price => 3.0, :clearance => false}}
-]
-
-coupons = [{:item => "AVOCADO", :num => 2, :cost => 5.0}]
-
 def consolidate_cart(cart)
   # code here
   cart.each_with_object({}) do |items, consol|
@@ -64,5 +54,3 @@ def checkout(cart, coupons)
   end
   total > 100 ? (total -= total * 0.1) : total
 end
-
-# checkout(cart, coupons)
