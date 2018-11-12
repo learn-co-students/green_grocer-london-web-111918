@@ -21,9 +21,7 @@ def apply_coupons(cart, coupons)
       applied[item] = info
     else
       applied[item] = info
-      applied[w_coupon] = info.clone
-      applied[w_coupon][:count] = 0
-      applied[w_coupon][:price] = coupon[:cost]
+      applied[w_coupon] = {price: coupon[:cost], clearance: info[:clearance], count: 0}
       until applied[item][:count] < coupon[:num]
         applied[item][:count] -= coupon[:num]
         applied[w_coupon][:count] += 1
